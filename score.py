@@ -24,7 +24,7 @@ temp=-2**31-1
 a=0
 q=0;
 li=[]
-with os.scandir('/home/tejas/Desktop/Sanjanasharmapun')as values:
+with os.scandir('/home/tejas/Desktop/cutted audio/1 marathi')as values:
     for value in values:
         print (value.name)
         q=q+1
@@ -56,8 +56,8 @@ with os.scandir('/home/tejas/Desktop/Sanjanasharmapun')as values:
             sheet3.write(2+q,m,k)
         sheet3.write(2+q,0,value.name)   
 
-wb.save('xlwt2 example.xls')             
-        print(l1)
+wb.save('Sanjanasharmapun.xls')             
+#print(l1)
 #y = multivariate_normal.pdf(mfcc_feat[:,0], mean=1.679289181802354136e+01, cov=5.549530598306957607e+00)
 
     #for j in range(0,13):

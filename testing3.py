@@ -10,8 +10,8 @@ import sys
 import numpy as np
 import xlwt 
 from xlwt import Workbook
-wb=Workbook()
-sheet3=wb.add_sheet('Sheet 3')
+#wb=Workbook()
+#sheet3=wb.add_sheet('Sheet 3')
 #sheet1.write(0,0,'Languages')
 #sheet1.write(0,4,'L1')
 #sheet1.write(0,5,'L2')
@@ -25,18 +25,23 @@ a=0
 q=0;
 p=[]
 li=[]
-with os.scandir('/home/tejas/Desktop/cutted audio/5 english')as values:
+import xlwt 
+#from xlwt import Workbook
+#wb=Workbook()
+#sheet1=wb.add_sheet('Sheet 1')
+with os.scandir('/home/tejas/Desktop/cutted audio/Jenny')as values:
+    #sheet1.write(2,0,'5 english')  
     for value in values:
         print (value.name)
         q=q+1
         (rate,sig)=wav.read(value)
-        mfcc_feat=mfcc(sig,rate)
+        mfcc_feat=mfcc(sig,rate,nfft=1103)
         #z=None
         l1=[]
         for m in range(1,6):
-            means=np.loadtxt(fname="/home/tejas/Desktop/lang6/4:1/a_0.9/mean/""{0}{1}".format("L",m),delimiter=',')
-            covar=np.loadtxt(fname="/home/tejas/Desktop/lang6/4:1/a_0.9/covariance/""{0}{1}".format("L",m),delimiter=',')
-            weight=np.loadtxt(fname="/home/tejas/Desktop/lang6/4:1/a_0.9/weight/""{0}{1}".format("L",m),delimiter=',')
+            means=np.loadtxt(fname="/home/tejas/git_workspace/minor2/mean/""{0}{1}".format("L",m),delimiter=',')
+            covar=np.loadtxt(fname="/home/tejas/git_workspace/minor2/covariance/""{0}{1}".format("L",m),delimiter=',')
+            weight=np.loadtxt(fname="/home/tejas/git_workspace/minor2/weight/""{0}{1}".format("L",m),delimiter=',')
             k=None
             z=None
             for j in range(0,len(mfcc_feat)):
@@ -56,6 +61,10 @@ with os.scandir('/home/tejas/Desktop/cutted audio/5 english')as values:
         h=np.where(l1==np.amax(l1))
         #print(h[0][0])
         p.insert(0,h[0][0]+1)
+    #    sheet1.write(2,2+q,str(h[0][0]+1))
+        #sheet1.write(2,0,value.name)   
+
+#wb.save('k.xls')   
 print(p)        
 res = max(set(p), key = p.count)
 print(res)
